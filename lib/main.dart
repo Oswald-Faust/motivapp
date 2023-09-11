@@ -33,7 +33,7 @@ class _IntroScreenState extends State<IntroScreen> {
             children: [
               // Première page de présentation
               Container(
-                decoration:const BoxDecoration(
+                decoration: const BoxDecoration(
                   gradient: LinearGradient(
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
@@ -61,7 +61,7 @@ class _IntroScreenState extends State<IntroScreen> {
                         color: Colors.blue,
                         borderRadius: BorderRadius.circular(30),
                       ),
-                      child: Text(
+                      child: const Text(
                         'Organize Your Tasks',
                         textAlign: TextAlign.center,
                         style: TextStyle(
@@ -71,7 +71,7 @@ class _IntroScreenState extends State<IntroScreen> {
                       ),
                     ),
                     SizedBox(height: 15),
-                    Text(
+                    const Text(
                       'Keep your tasks organized by category, priority, or due date.',
                       textAlign: TextAlign.center,
                       style: TextStyle(color: Colors.white, fontSize: 16),
@@ -82,7 +82,7 @@ class _IntroScreenState extends State<IntroScreen> {
 
               // Deuxième page de présentation
               Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   gradient: LinearGradient(
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
