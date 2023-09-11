@@ -92,7 +92,7 @@ class _IntroScreenState extends State<IntroScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Row(
+                    const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Icon(Icons.folder, size: 50),
@@ -110,7 +110,7 @@ class _IntroScreenState extends State<IntroScreen> {
                         color: Colors.blue,
                         borderRadius: BorderRadius.circular(30),
                       ),
-                      child: Text(
+                      child: const Text(
                         'Rebuild your life',
                         textAlign: TextAlign.center,
                         style: TextStyle(
@@ -120,7 +120,7 @@ class _IntroScreenState extends State<IntroScreen> {
                       ),
                     ),
                     SizedBox(height: 15),
-                    Text(
+                    const Text(
                       'Change your process and think different',
                       textAlign: TextAlign.center,
                       style: TextStyle(color: Colors.white, fontSize: 16),
@@ -131,7 +131,7 @@ class _IntroScreenState extends State<IntroScreen> {
 
               // Troisième page de présentation
               Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   gradient: LinearGradient(
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
@@ -141,7 +141,7 @@ class _IntroScreenState extends State<IntroScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Row(
+                    const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Icon(Icons.lightbulb, size: 50),
@@ -158,7 +158,7 @@ class _IntroScreenState extends State<IntroScreen> {
                         color: Colors.blue,
                         borderRadius: BorderRadius.circular(30),
                       ),
-                      child: Text(
+                      child: const Text(
                         'Achieve your goals',
                         textAlign: TextAlign.center,
                         style: TextStyle(
@@ -168,7 +168,7 @@ class _IntroScreenState extends State<IntroScreen> {
                       ),
                     ),
                     SizedBox(height: 15),
-                    Text(
+                    const Text(
                       'Use innovate process to change your habits ',
                       textAlign: TextAlign.center,
                       style: TextStyle(color: Colors.white, fontSize: 16),
