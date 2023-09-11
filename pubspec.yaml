@@ -7,13 +7,24 @@ environment:
   sdk: '>=3.1.0 <4.0.0'
 
 dependencies:
+
   flutter:
     sdk: flutter
+  intl: ^0.17.0 
+  modal_bottom_sheet: ^2.0.0
+  firebase_core: ^2.15.1
+  firebase_auth: ^4.9.0
+  cloud_firestore: ^4.9.1 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
+  flutter_svg: ^2.0.0 
+  font_awesome_flutter: ^9.0.0
+
 
 flutter:
   uses-material-design: true
+  assets:  # Ajoute cette section
+    - assets/images/  # Le chemin relatif vers le dossier d'images
