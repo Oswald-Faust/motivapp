@@ -224,8 +224,8 @@ class _MyHomePageState extends State<MyHomePage>
             padding: EdgeInsets.zero,
             children: <Widget>[
               UserAccountsDrawerHeader(
-                accountName: Text("Mr. Jack"),
-                accountEmail: Text("@jacksparrow009"),
+                accountName: Text("Test Name"),
+                accountEmail: Text("@testname001"),
                 currentAccountPicture: CircleAvatar(
                   backgroundColor:
                       Theme.of(context).platform == TargetPlatform.iOS
@@ -249,48 +249,94 @@ class _MyHomePageState extends State<MyHomePage>
               ListTile(
                 title: Text('Groups'),
                 onTap: () {
-                  // Mettez à jour l'état de l'application
-                  // ...
-                  // Puis fermez le tiroir
+                  // Affiche un SnackBar avec le message
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(
+                          'Les menus seront bientôt disponibles dans la version V.2 du projet.'),
+                    ),
+                  );
+                  // Ferme le tiroir
                   Navigator.pop(context);
                 },
               ),
               ListTile(
                 title: Text('Tell a friend'),
                 onTap: () {
-                  // Mettez à jour l'état de l'application
-                  // ...
-                  // Puis fermez le tiroir
+                  // Affiche un SnackBar avec le message
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(
+                          'Les menus seront bientôt disponibles dans la version V.2 du projet.'),
+                    ),
+                  );
+                  // Ferme le tiroir
                   Navigator.pop(context);
                 },
               ),
               ListTile(
                 title: Text('Information'),
                 onTap: () {
-                  // Mettez à jour l'état de l'application
-                  // ...
-                  // Puis fermez le tiroir
+                  // Affiche un SnackBar avec le message
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(
+                          'Les menus seront bientôt disponibles dans la version V.2 du projet.'),
+                    ),
+                  );
+                  // Ferme le tiroir
                   Navigator.pop(context);
                 },
               ),
               ListTile(
                 title: Text('Settings'),
                 onTap: () {
-                  // Mettez à jour l'état de l'application
-                  // ...
-                  // Puis fermez le tiroir
+                  // Affiche un SnackBar avec le message
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(
+                          'Les menus seront bientôt disponibles dans la version V.2 du projet.'),
+                    ),
+                  );
+                  // Ferme le tiroir
                   Navigator.pop(context);
                 },
               ),
               ListTile(
                 title: Text('Log Out'),
                 onTap: () {
-                  // Naviguez vers la page de connexion ou d'inscription
-                  Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => LoginScreen(),
-                      )); // Utilisez la route vers l'écran de connexion;
+                  // Afficher une boîte de dialogue de confirmation
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: Text('Confirmation de la déconnexion'),
+                        content:
+                            Text('Souhaitez-vous vraiment vous en aller  ?'),
+                        actions: <Widget>[
+                          TextButton(
+                            child: Text('Annuler'),
+                            onPressed: () {
+                              Navigator.of(context)
+                                  .pop(); // Fermer la boîte de dialogue
+                            },
+                          ),
+                          TextButton(
+                            child: Text('Déconnecter'),
+                            onPressed: () {
+                              // Naviguez vers la page de connexion ou d'inscription
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => LoginScreen(),
+                                ),
+                              );
+                            },
+                          ),
+                        ],
+                      );
+                    },
+                  );
                 },
               ),
             ],
@@ -976,10 +1022,7 @@ class _AddProjectPageState extends State<AddProjectPage> {
                             ),
                           ),
                   child: Text('Confirm', style: TextStyle(color: Colors.white)),
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.white, // Couleur de fond du bouton
-                    onPrimary: Colors.purple, // Couleur du texte du bouton
-                  ),
+                  style: ElevatedButton.styleFrom(),
                 ),
               ],
             ),
