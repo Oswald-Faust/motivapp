@@ -3,21 +3,107 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:motivapp/screens/intro_screens.dart';
+import 'package:motivapp/screens/login_screen.dart';
+import 'package:animated_check/animated_check.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp());
 }
 
+class SplashScreen extends StatefulWidget {
+  @override
+  _SplashScreenState createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen>
+    with TickerProviderStateMixin {
+  late AnimationController _animationController;
+  late Animation<double> _animation;
+
+  @override
+  void initState() {
+    super.initState();
+    _animationController =
+        AnimationController(vsync: this, duration: Duration(seconds: 2));
+    _animation = Tween<double>(begin: 0, end: 1).animate(_animationController);
+
+    _animationController.forward().then((_) {
+      Future.delayed(Duration(seconds: 5), () {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => IntroScreen()),
+        );
+      });
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            padding:
+                EdgeInsets.symmetric(vertical: 20.0), // Espacement vertical
+            child: Center(
+              child: Column(
+                children: [
+                  Container(
+                    width: 120.0, // Largeur du carré
+                    height: 120.0, // Hauteur du carré
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Colors.green, // Couleur de la bordure
+                        width: 2.0, // Épaisseur de la bordure
+                      ),
+                      borderRadius: BorderRadius.circular(
+                          12.0), // Coins arrondis du carré
+                    ),
+                    child: Center(
+                      child: AnimatedCheck(
+                        progress: _animation,
+                        size: 120.0,
+                        color: Colors.green,
+                        strokeWidth: 2.0,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                      height: 40.0), // Espacement entre le carré et le texte
+                  Text(
+                    'MotivApp : New motivation, new life', // Nom de l'application
+                    style: TextStyle(
+                      fontSize: 24.0, // Taille de la police
+                      fontWeight: FontWeight.bold, // Texte en gras
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          SizedBox(
+              height:
+                  40.0), // Espacement entre la partie supérieure et la barre de progression
+          LinearProgressIndicator(
+            value: _animationController.isAnimating ? null : 1.0,
+            // La valeur est null pendant l'animation, puis 1.0 lorsque l'animation est terminée.
+            color: Colors.green, // Couleur de la barre de progression
+            backgroundColor: Colors
+                .grey, // Couleur de l'arrière-plan de la barre de progression
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Task Management App',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: IntroScreen(),
+      home: SplashScreen(),
     );
   }
 }
@@ -200,8 +286,11 @@ class _MyHomePageState extends State<MyHomePage>
                 title: Text('Log Out'),
                 onTap: () {
                   // Naviguez vers la page de connexion ou d'inscription
-                  Navigator.pushReplacementNamed(context,
-                      '/lib/screens/login_screen.dart'); // Utilisez la route vers l'écran de connexion;
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => LoginScreen(),
+                      )); // Utilisez la route vers l'écran de connexion;
                 },
               ),
             ],
@@ -223,12 +312,12 @@ class _MyHomePageState extends State<MyHomePage>
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Jack Martines',
+                          Text('Test Time',
                               style: TextStyle(fontWeight: FontWeight.bold)),
                           SizedBox(
                               height:
                                   5), // Ajoute un espace vertical de 5 points
-                          Text('Morning, Jack'),
+                          Text('Hello, my Tester !'),
                         ],
                       ),
                     ),
@@ -283,7 +372,7 @@ class _MyHomePageState extends State<MyHomePage>
                   'Project${projects.length != 1 ? 's' : ''}',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 29,
+                    fontSize: 27,
                   ),
                 ),
                 subtitle: RichText(
@@ -480,7 +569,7 @@ class _MyHomePageState extends State<MyHomePage>
                 title: Text(
                   "Today's Task",
                   style: TextStyle(
-                      fontSize: 29,
+                      fontSize: 25,
                       fontWeight: FontWeight.bold,
                       color: Colors.black),
                 ),

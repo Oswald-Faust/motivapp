@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:motivapp/screens/login_screen.dart';
 
 class IntroScreen extends StatefulWidget {
   @override
@@ -199,8 +200,11 @@ class _IntroScreenState extends State<IntroScreen> {
               onTap: () {
                 if (_currentPage == 2) {
                   // Si nous sommes sur la dernière page, passez à l'écran de connexion
-                  Navigator.pushReplacementNamed(context,
-                      '/lib/screens/login_screen.dart'); // Utilisez la route vers l'écran de connexion
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => LoginScreen(),
+                      ));
                 } else {
                   // Sinon, passez à la page suivante
                   _pageController.nextPage(
@@ -208,8 +212,19 @@ class _IntroScreenState extends State<IntroScreen> {
                       curve: Curves.easeIn);
                 }
               },
-              child: Text(_currentPage == 2 ? 'Start' : 'Next',
-                  style: TextStyle(color: Colors.white, fontSize: 18)),
+              child: Row(
+                children: [
+                  Text(_currentPage == 2 ? 'Start' : 'Next',
+                      style: TextStyle(color: Colors.white, fontSize: 18)),
+                  SizedBox(width: 4), // Espacement entre le texte et les icônes
+                  Icon(Icons.arrow_forward_ios,
+                      color: Colors.white,
+                      size: 16), // Définition de la taille de l'icône
+                  Icon(Icons.arrow_forward_ios,
+                      color: Colors.white,
+                      size: 16), // Définition de la taille de l'icône
+                ],
+              ),
             ),
           ),
         ],
