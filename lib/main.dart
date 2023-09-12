@@ -232,7 +232,7 @@ class _MyHomePageState extends State<MyHomePage>
                           ? Colors.blue
                           : Colors.white,
                   child: Text(
-                    "J",
+                    "T",
                     style: TextStyle(fontSize: 40.0),
                   ),
                 ),
