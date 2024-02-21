@@ -11,87 +11,71 @@ void main() async {
   runApp(MyApp());
 }
 
-class SplashScreen extends StatefulWidget {
+class Screen extends StatefulWidget {
   @override
-  _SplashScreenState createState() => _SplashScreenState();
+  _ScreenState createState() => _ScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen>
-    with TickerProviderStateMixin {
+class _ScreenState extends State<Screen> with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
-  late Animation<double> _animation;
+  late Animation<Color?> _animation;
 
   @override
   void initState() {
     super.initState();
+    // Créer le contrôleur d'animation avec une durée de 10 secondes
     _animationController =
-        AnimationController(vsync: this, duration: Duration(seconds: 2));
-    _animation = Tween<double>(begin: 0, end: 1).animate(_animationController);
-
-    _animationController.forward().then((_) {
-      Future.delayed(Duration(seconds: 5), () {
-        Navigator.pushReplacement(
+        AnimationController(vsync: this, duration: Duration(seconds: 5));
+    // Créer le Tween d'animation avec les couleurs de départ et d'arrivée
+    _animation = ColorTween(begin: Colors.white, end: Colors.green)
+        .animate(_animationController);
+    // Ajouter un écouteur à l'animation pour appeler setState à chaque changement de valeur
+    _animation.addListener(() {
+      setState(() {});
+    });
+    // Ajouter un StatusListener à l'animation pour détecter quand l'animation est terminée
+    _animation.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        // Naviguer vers l'écran suivant
+        Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => IntroScreen()),
         );
-      });
+      }
     });
+    // Lancer l'animation
+    _animationController.forward();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // Utiliser la valeur de l'animation pour la couleur du fond
+      backgroundColor: _animation.value,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            padding:
-                EdgeInsets.symmetric(vertical: 20.0), // Espacement vertical
+            padding: EdgeInsets.symmetric(vertical: 20.0),
             child: Center(
               child: Column(
                 children: [
-                  Container(
-                    width: 120.0, // Largeur du carré
-                    height: 120.0, // Hauteur du carré
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.green, // Couleur de la bordure
-                        width: 2.0, // Épaisseur de la bordure
-                      ),
-                      borderRadius: BorderRadius.circular(
-                          12.0), // Coins arrondis du carré
-                    ),
-                    child: Center(
-                      child: AnimatedCheck(
-                        progress: _animation,
-                        size: 120.0,
-                        color: Colors.green,
-                        strokeWidth: 2.0,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                      height: 40.0), // Espacement entre le carré et le texte
-                  Text(
-                    'MotivApp : New motivation, new life', // Nom de l'application
-                    style: TextStyle(
-                      fontSize: 24.0, // Taille de la police
-                      fontWeight: FontWeight.bold, // Texte en gras
-                    ),
-                  ),
+                  Container(),
+                  SizedBox(height: 40.0),
+                  Image.asset("lib/assets/logo.png"),
                 ],
               ),
             ),
           ),
-          SizedBox(
-              height:
-                  40.0), // Espacement entre la partie supérieure et la barre de progression
-          LinearProgressIndicator(
-            value: _animationController.isAnimating ? null : 1.0,
-            // La valeur est null pendant l'animation, puis 1.0 lorsque l'animation est terminée.
-            color: Colors.green, // Couleur de la barre de progression
-            backgroundColor: Colors
-                .grey, // Couleur de l'arrière-plan de la barre de progression
+          SizedBox(height: 40.0),
+          // Utiliser la valeur de l'animation pour la visibilité de la barre de progression
+          Visibility(
+            visible: _animation.value == Colors.white,
+            child: LinearProgressIndicator(
+              value: _animationController.isAnimating ? null : 1.0,
+              color: const Color.fromARGB(255, 44, 204, 49),
+              backgroundColor: Colors.grey,
+            ),
           ),
         ],
       ),
@@ -103,7 +87,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: SplashScreen(),
+      home: Screen(),
     );
   }
 }

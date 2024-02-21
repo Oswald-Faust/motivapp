@@ -10,12 +10,15 @@ dependencies:
 
   flutter:
     sdk: flutter
-  intl: ^0.17.0 
+  intl: ^0.17.0
   modal_bottom_sheet: ^2.0.0
   firebase_core: ^2.15.1
   firebase_auth: ^4.9.0
   cloud_firestore: ^4.9.1
   animated_check: ^1.0.0
+  webview_flutter: ^2.0.13
+  flutter_webview_plugin: ^0.4.0
+
 
 dev_dependencies:
   flutter_test:
@@ -25,8 +28,13 @@ dev_dependencies:
   font_awesome_flutter: ^9.0.0
   flutter_native_splash: ^2.3.2
 
-
 flutter:
   uses-material-design: true
   assets:  # Ajoute cette section
-    - assets/images/  # Le chemin relatif vers le dossier d'images
+    - lib/assets/logo.png  # Le chemin relatif vers le dossier d'images
+    - lib/assets/165Wfi4Lrmal2c0xrdHnPlA.jpg
+    - lib/assets/Rectangle 4081.png
+    - lib/assets/Frame.png
+    - lib/assets/Frame (1).png
+    - lib/assets/19199058 1.png
+    - lib/screens/carteee_h3.html

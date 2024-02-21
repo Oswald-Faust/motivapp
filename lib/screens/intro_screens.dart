@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:motivapp/screens/login_screen.dart';
+import 'package:motivapp/screens/new_screen.dart';
+import 'package:motivapp/screens/register_screens.dart';
+import 'login_screen.dart';
+import 'new_screen.dart';
 
 class IntroScreen extends StatefulWidget {
   @override
@@ -7,222 +10,94 @@ class IntroScreen extends StatefulWidget {
 }
 
 class _IntroScreenState extends State<IntroScreen> {
-  final PageController _pageController = PageController();
-  int _currentPage = 0;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: [
-          PageView(
-            controller: _pageController,
-            onPageChanged: (int page) {
-              setState(() {
-                _currentPage = page;
-              });
-            },
-            children: [
-              // Première page de présentation
-              Container(
-                decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [Colors.blue, Colors.green],
-                  ),
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    // Ajoutez ici le widget de la roue colorée avec les icônes
-                    const Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Icon(Icons.list, size: 50),
-                        Icon(Icons.calendar_today, size: 50),
-                        Icon(Icons.check_circle, size: 50),
-                        Icon(Icons.assignment_turned_in, size: 50),
-                      ],
-                    ),
-                    SizedBox(height: 30),
-                    Container(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-                      decoration: BoxDecoration(
-                        color: Colors.blue,
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      child: const Text(
-                        'Organize Your Tasks',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                    SizedBox(height: 15),
-                    const Text(
-                      'Keep your tasks organized by category, priority, or due date.',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(color: Colors.white, fontSize: 16),
-                    ),
-                  ],
-                ),
-              ),
-
-              // Deuxième page de présentation
-              Container(
-                decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [Colors.red, Colors.green],
-                  ),
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Icon(Icons.folder, size: 50),
-                        Icon(Icons.event_note, size: 50),
-                        Icon(Icons.assignment, size: 50),
-                        Icon(Icons.inbox, size: 50),
-                      ],
-                    ),
-                    // Ajoutez ici le widget de la roue colorée avec les icônes
-                    SizedBox(height: 30),
-                    Container(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-                      decoration: BoxDecoration(
-                        color: Colors.blue,
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      child: const Text(
-                        'Rebuild your life',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                    SizedBox(height: 15),
-                    const Text(
-                      'Change your process and think different',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(color: Colors.white, fontSize: 16),
-                    ),
-                  ],
-                ),
-              ),
-
-              // Troisième page de présentation
-              Container(
-                decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [Colors.transparent, Colors.yellow],
-                  ),
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Icon(Icons.lightbulb, size: 50),
-                        Icon(Icons.explore, size: 50),
-                        Icon(Icons.new_releases, size: 50),
-                        Icon(Icons.science, size: 50),
-                      ],
-                    ),
-                    SizedBox(height: 30),
-                    Container(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-                      decoration: BoxDecoration(
-                        color: Colors.blue,
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      child: const Text(
-                        'Achieve your goals',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                    SizedBox(height: 15),
-                    const Text(
-                      'Use innovate process to change your habits ',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(color: Colors.white, fontSize: 16),
-                    ),
-                    // Ajoutez d'autres éléments à la page, comme des images, des icônes, du texte, etc.
-                  ],
-                ),
-              ),
-            ],
+          Align(
+            alignment: Alignment.topLeft,
+            child: Image(
+              image: AssetImage(
+                  '/home/ofaust/MotivApp/GoZeMap/lib/assets/media-image-9.jpg'), // Assure-toi d'utiliser le chemin correct
+              fit: BoxFit.cover, // Remplace par le mode de recadrage souhaité
+            ),
           ),
-          Positioned(
-            bottom: 30,
-            left: 0,
-            right: 0,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: List.generate(
-                3,
-                (index) => Container(
-                  margin: EdgeInsets.symmetric(horizontal: 5),
-                  width: _currentPage == index ? 25 : 10,
-                  height: 10,
-                  decoration: BoxDecoration(
-                    color: _currentPage == index
-                        ? Colors.white
-                        : Colors.white.withOpacity(0.5),
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                ),
+          Container(
+            width: double.infinity,
+            height: double.infinity,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(
+                    '/home/ofaust/MotivApp/GoZeMap/lib/assets/media-image-9.jpg'),
+                fit: BoxFit.cover,
               ),
             ),
           ),
-          Positioned(
-            right: 30,
-            bottom: 30,
-            child: InkWell(
-              onTap: () {
-                if (_currentPage == 2) {
-                  // Si nous sommes sur la dernière page, passez à l'écran de connexion
-                  Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => LoginScreen(),
-                      ));
-                } else {
-                  // Sinon, passez à la page suivante
-                  _pageController.nextPage(
-                      duration: Duration(milliseconds: 500),
-                      curve: Curves.easeIn);
-                }
-              },
+          Align(
+            alignment: Alignment.center,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset("lib/assets/logo.png"),
+                SizedBox(height: 16.0),
+                Text(
+                  'Toujours prêts à vous servir !',
+                  style: TextStyle(
+                    fontSize: 24.0,
+                    color: Colors.white,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Padding(
+              padding: const EdgeInsets.all(24.0),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(_currentPage == 2 ? 'Start' : 'Next',
-                      style: TextStyle(color: Colors.white, fontSize: 18)),
-                  SizedBox(width: 4), // Espacement entre le texte et les icônes
-                  Icon(Icons.arrow_forward_ios,
-                      color: Colors.white,
-                      size: 16), // Définition de la taille de l'icône
-                  Icon(Icons.arrow_forward_ios,
-                      color: Colors.white,
-                      size: 16), // Définition de la taille de l'icône
+                  /*ElevatedButton(
+                    child: Text('Connexion'),
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.green,
+                      onPrimary: Colors.white,
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 32.0,
+                        vertical: 16.0,
+                      ),
+                    ),
+                    onPressed: () {
+                      // Naviguez vers la page de connexion ou d'inscription
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => LoginScreen(),
+                        ),
+                      );
+                    },
+                  ),
+                  SizedBox(width: 16.0),*/
+                  ElevatedButton(
+                    child: Text('Bienvenue !'),
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.white,
+                      onPrimary: const Color.fromARGB(255, 22, 58, 23),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 32.0,
+                        vertical: 16.0,
+                      ),
+                    ),
+                    onPressed: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => NewScreen(),
+                        ),
+                      );
+                    },
+                  ),
                 ],
               ),
             ),
